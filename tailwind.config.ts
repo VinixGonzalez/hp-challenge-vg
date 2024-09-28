@@ -9,11 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        gryffindor: "var(--color-gryffindor)",
+        slytherin: "var(--color-slytherin)",
+        hufflepuff: "var(--color-hufflepuff)",
+        ravenclaw: "var(--color-ravenclaw)",
+        bkg: "var(--color-bkg)",
+      },
+      fontFamily: {
+        hp: ["var(--font-hp)", "sans-serif"],
+      },
+      keyframes: {
+        heartbeat: {
+          "0%, 100%": { transform: "scale(1)" },
+          "14%": { transform: "scale(1.3)" },
+          "28%": { transform: "scale(1)" },
+          "42%": { transform: "scale(1.3)" },
+          "70%": { transform: "scale(1)" },
+        },
+      },
+      animation: {
+        heartbeat: "heartbeat 1s ease-in-out",
       },
     },
   },
   plugins: [],
 };
+
 export default config;

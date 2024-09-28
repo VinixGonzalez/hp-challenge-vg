@@ -2,26 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  :root[data-theme="gryffindor"] {
+    --color-gryffindor: rgb(145 59 60);
+    --color-slytherin: rgb(51 83 38);
+    --color-hufflepuff: rgb(230 206 57);
+    --color-ravenclaw: rgb(60 59 78);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bkg: rgb(145 59 60);
+  }
+  :root[data-theme="slytherin"] {
+    --color-gryffindor: rgb(145 59 60);
+    --color-slytherin: rgb(51 83 38);
+    --color-hufflepuff: rgb(230 206 57);
+    --color-ravenclaw: rgb(60 59 78);
+
+    --color-bkg: rgb(51 83 38);
+  }
+  :root[data-theme="hufflepuff"] {
+    --color-gryffindor: rgb(145 59 60);
+    --color-slytherin: rgb(51 83 38);
+    --color-hufflepuff: rgb(230 206 57);
+    --color-ravenclaw: rgb(60 59 78);
+
+    --color-bkg: rgb(109, 97, 23);
+  }
+  :root[data-theme="ravenclaw"] {
+    --color-gryffindor: rgb(145 59 60);
+    --color-slytherin: rgb(51 83 38);
+    --color-hufflepuff: rgb(230 206 57);
+    --color-ravenclaw: rgb(60 59 78);
+
+    --color-bkg: rgb(60 59 78);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .glow {
+    box-shadow: 0 0 15px 5px rgba(000, 0, 000, 0.9);
   }
 }
