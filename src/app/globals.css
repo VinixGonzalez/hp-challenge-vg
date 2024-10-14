@@ -2,38 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-gryffindor: rgb(145, 59, 60);
+  --color-slytherin: rgb(51, 83, 38);
+  --color-hufflepuff: rgb(230, 206, 57);
+  --color-ravenclaw: rgb(60, 59, 78);
+}
+
 @layer base {
   :root[data-theme="gryffindor"] {
-    --color-gryffindor: rgb(145 59 60);
-    --color-slytherin: rgb(51 83 38);
-    --color-hufflepuff: rgb(230 206 57);
-    --color-ravenclaw: rgb(60 59 78);
-
-    --color-bkg: rgb(145 59 60);
+    --color-bkg: var(--color-gryffindor);
   }
   :root[data-theme="slytherin"] {
-    --color-gryffindor: rgb(145 59 60);
-    --color-slytherin: rgb(51 83 38);
-    --color-hufflepuff: rgb(230 206 57);
-    --color-ravenclaw: rgb(60 59 78);
-
-    --color-bkg: rgb(51 83 38);
+    --color-bkg: var(--color-slytherin);
   }
   :root[data-theme="hufflepuff"] {
-    --color-gryffindor: rgb(145 59 60);
-    --color-slytherin: rgb(51 83 38);
-    --color-hufflepuff: rgb(230 206 57);
-    --color-ravenclaw: rgb(60 59 78);
-
     --color-bkg: rgb(109, 97, 23);
   }
   :root[data-theme="ravenclaw"] {
-    --color-gryffindor: rgb(145 59 60);
-    --color-slytherin: rgb(51 83 38);
-    --color-hufflepuff: rgb(230 206 57);
-    --color-ravenclaw: rgb(60 59 78);
-
-    --color-bkg: rgb(60 59 78);
+    --color-bkg: var(--color-ravenclaw);
   }
 }
 

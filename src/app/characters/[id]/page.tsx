@@ -2,46 +2,33 @@
 
 import { useCharacter } from "@/hooks/useCharacter";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import clsx from "clsx";
 import { toast } from "react-toastify";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { CgSpinner } from "react-icons/cg";
+import { useFavoriteStore } from "@/store/useFavoriteStore";
 
 const CharacterDetailPage = () => {
   const params = useParams();
   const id = params.id as string;
   const { character, loading, error } = useCharacter(id);
 
-  const [isFavorite, setIsFavorite] = useState(false);
   const [animate, setAnimate] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-      if (favorites.includes(id)) {
-        setIsFavorite(true);
-      }
-    }
-  }, [id]);
+  const { addFavorite, removeFavorite, isFavorite } = useFavoriteStore();
 
   const handleFavorite = () => {
-    if (typeof window !== "undefined") {
-      let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-      if (favorites.includes(id)) {
-        favorites = favorites.filter((favId: string) => favId !== id);
-        setIsFavorite(false);
-        setAnimate(false);
-        toast.success("Removed from favorites!");
-      } else {
-        favorites.push(id);
-        setIsFavorite(true);
-        setAnimate(true);
-        toast.success("Added to favorites!");
-      }
-      localStorage.setItem("favorites", JSON.stringify(favorites));
+    if (isFavorite(id)) {
+      removeFavorite(id);
+      setAnimate(false);
+      toast.success("Removed from favorites!");
+    } else {
+      addFavorite(id);
+      setAnimate(true);
+      toast.success("Added to favorites!");
     }
   };
 
@@ -78,10 +65,10 @@ const CharacterDetailPage = () => {
               animate && "animate-heartbeat"
             )}
             aria-label={
-              isFavorite ? "Remove from favorites" : "Add to favorites"
+              isFavorite(id) ? "Remove from favorites" : "Add to favorites"
             }
           >
-            {isFavorite ? (
+            {isFavorite(id) ? (
               <MdFavorite title="unfavorite" className="text-bkg" size={36} />
             ) : (
               <MdFavoriteBorder
